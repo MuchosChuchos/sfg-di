@@ -1,22 +1,20 @@
 package guru.springframework.sfgdi.controllers;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 
 import guru.springframework.sfgdi.services.GreetingService;
 
 @Controller
-public class MyController {
+public class ConstructorInjectedController {
 	
 	private final GreetingService greetingService;
 	
-	
-	public MyController(GreetingService greetingService) {
-		super();
+	public ConstructorInjectedController(@Qualifier("constructorGreetingService") GreetingService greetingService) {
 		this.greetingService = greetingService;
 	}
-
-
-	public String sayHello() {
+	
+	public String getGreeting() {
 		return greetingService.sayGreeting();
 	}
 }
